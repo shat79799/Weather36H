@@ -55,4 +55,18 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // Lifecycle & ViewModel for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
+
+    // Retrofit 網路庫與 Moshi JSON 解析器
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-moshi:3.0.0")
+
+    // Moshi Kotlin 程式碼生成器（用於解析 JSON）
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
+
+    // Kotlin Coroutines (協程) 用於非同步處理
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
 }
