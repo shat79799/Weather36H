@@ -42,10 +42,11 @@ fun WeatherScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .windowInsetsPadding(WindowInsets.statusBars)
                         .padding(horizontal = 8.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // 1. 左上角：清除搜尋結果按鈕
+                    // 左上角：清除搜尋結果按鈕
                     IconButton(
                         onClick = {
                             cityInput = "" // 清空輸入欄
@@ -60,7 +61,7 @@ fun WeatherScreen(
                         )
                     }
 
-                    // 2. 中間：文字輸入框
+                    // 中間：文字輸入框
                     OutlinedTextField(
                         value = cityInput,
                         onValueChange = { cityInput = it },
@@ -73,7 +74,7 @@ fun WeatherScreen(
                         enabled = uiState !is WeatherUiState.Loading // 查詢中禁用輸入
                     )
 
-                    // 3. 右上角：開始進行搜尋按鈕
+                    // 右上角：開始進行搜尋按鈕
                     IconButton(
                         onClick = { viewModel.searchWeather(cityInput) },
                         enabled = uiState !is WeatherUiState.Loading && cityInput.isNotBlank() // 查詢中或空白時禁用
