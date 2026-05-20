@@ -56,6 +56,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
+    // Material Icons
+    implementation("androidx.compose.material:material-icons-core:1.6.0")
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+
     // Lifecycle & ViewModel for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
