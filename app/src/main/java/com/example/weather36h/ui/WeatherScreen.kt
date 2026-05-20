@@ -167,7 +167,7 @@ fun ErrorView(message: String) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "遭遇錯誤",
+            text = "發生錯誤",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.error

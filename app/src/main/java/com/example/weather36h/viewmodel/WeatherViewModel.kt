@@ -1,5 +1,6 @@
 package com.example.weather36h.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather36h.model.ForecastItem
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel : ViewModel() {
 
+    private val TAG = "Weather36H"
     private val apiKey = "CWA-F789313B-CFBB-4B07-A88F-C8EF35EE1711"
 
     // 內部讀寫的 StateFlow，預設為初始狀態
@@ -37,6 +39,7 @@ class WeatherViewModel : ViewModel() {
             try {
                 val response = WeatherApiClient.service.get36HourForecast(apiKey, cityName.trim())
                 val locationList = response.records.location
+                Log.i(TAG, "result: ${locationList}")
 
                 if (locationList.isNotEmpty()) {
                     // 解析成功，轉換資料結構
@@ -47,11 +50,12 @@ class WeatherViewModel : ViewModel() {
                     )
                 } else {
                     // API 回傳成功但找不到該城市資料 (搜尋條件無效)
-                    _uiState.value = WeatherUiState.Error("找不到「$cityName」的天氣資料，請檢查字詞是否正確")
+                    _uiState.value = WeatherUiState.Error("找不到「$cityName」的天氣資料，請檢查字詞是否正確（例如：臺北市、高雄市）")
                 }
             } catch (e: Exception) {
                 // 處理網路異常、連線逾時或 API 格式有誤
-                _uiState.value = WeatherUiState.Error("連線或資料解析失敗：${e.localizedMessage ?: "未知錯誤"}")
+                Log.e(TAG, "api error: ${e.message}", e)
+                _uiState.value = WeatherUiState.Error("連線或資料解析失敗")
             }
         }
     }
